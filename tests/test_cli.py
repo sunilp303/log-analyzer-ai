@@ -5,11 +5,9 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 from click.testing import CliRunner
-from langchain_core.documents import Document
-
 from cli import cli
 from analysis.anomaly import AnomalyReport, Anomaly
-from analysis.postmortem import PostMortem, TimelineEvent
+from analysis.postmortem import PostMortem
 
 SAMPLE_DIR = Path(__file__).parent.parent / "sample_logs"
 

@@ -3,7 +3,6 @@ import json
 from unittest.mock import MagicMock, patch
 
 import pytest
-from langchain_core.documents import Document
 
 from analysis.postmortem import PostMortem, TimelineEvent, postmortem_to_markdown
 
@@ -125,7 +124,7 @@ class TestGeneratePostmortem:
         assert isinstance(result, PostMortem)
 
     def test_generate_postmortem_writes_file(self, tmp_path, sample_documents, fake_postmortem_response):
-        from analysis.postmortem import generate_postmortem, postmortem_to_markdown, PostMortem
+        from analysis.postmortem import postmortem_to_markdown, PostMortem
 
         pm = PostMortem(**json.loads(fake_postmortem_response))
         output_path = tmp_path / "postmortem.md"

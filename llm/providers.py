@@ -16,7 +16,7 @@ def get_llm(temperature: float = 0) -> BaseChatModel:
 
 
 def get_embeddings():
-    from config import EMBEDDINGS_PROVIDER, HUGGINGFACE_MODEL, OPENAI_API_KEY
+    from config import EMBEDDINGS_PROVIDER, HUGGINGFACE_MODEL
 
     if EMBEDDINGS_PROVIDER == "openai":
         from langchain_openai import OpenAIEmbeddings

@@ -66,7 +66,8 @@ class TestLocalFiles:
 
     def test_unsupported_extension_raises(self):
         from ingestion.local_files import load_local_logs
-        import tempfile, os
+        import os
+        import tempfile
 
         with tempfile.NamedTemporaryFile(suffix=".csv", delete=False) as f:
             f.write(b"col1,col2\nval1,val2\n")

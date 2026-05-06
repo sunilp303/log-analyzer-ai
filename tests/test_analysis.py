@@ -3,8 +3,6 @@ import json
 from unittest.mock import MagicMock, patch
 
 import pytest
-from langchain_core.documents import Document
-from langchain_core.messages import AIMessage
 
 
 def _make_structured_llm(expected):
@@ -32,7 +30,7 @@ def _make_str_llm(response: str):
 
 class TestAnomalyAnalysis:
     def test_analyze_anomalies_structure(self, sample_documents, fake_anomaly_response):
-        from analysis.anomaly import analyze_anomalies, AnomalyReport, Anomaly
+        from analysis.anomaly import analyze_anomalies, AnomalyReport
 
         expected = AnomalyReport(**json.loads(fake_anomaly_response))
         mock_llm = _make_structured_llm(expected)
@@ -104,12 +102,8 @@ class TestCorrelation:
         fake_llm = _make_str_llm("cascade narrative")
         captured = {}
 
-        original_invoke = None
-
         def capturing_chain_invoke(kwargs):
             captured.update(kwargs)
-            from langchain_core.messages import AIMessage
-            return AIMessage(content="cascade narrative")
 
         with patch("analysis.correlation._PROMPT") as mock_prompt:
             mock_chain = MagicMock()

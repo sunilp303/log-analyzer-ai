@@ -54,19 +54,6 @@ with st.sidebar:
     st.caption("LLM provider and API keys are set via `.env` or environment variables.")
 
 
-# ── Ingest handler ────────────────────────────────────────────────────────────
-if ingest_btn:
-    with st.spinner("Ingesting logs…"):
-        try:
-            docs = _ingest(source, locals())
-            from processing.vectorstore import build_vectorstore
-            st.session_state.documents = docs
-            st.session_state.vectorstore = build_vectorstore(docs)
-            st.sidebar.success(f"✅ Ingested {len(docs)} events")
-        except Exception as e:
-            st.sidebar.error(f"Ingestion failed: {e}")
-
-
 def _ingest(source: str, ctx: dict) -> List[Document]:
     if source == "local":
         from ingestion.local_files import load_local_logs
@@ -82,6 +69,19 @@ def _ingest(source: str, ctx: dict) -> List[Document]:
             end=ctx.get("end_time") or None,
         )
     raise ValueError(f"Unknown source: {source}")
+
+
+# ── Ingest handler ────────────────────────────────────────────────────────────
+if ingest_btn:
+    with st.spinner("Ingesting logs…"):
+        try:
+            docs = _ingest(source, locals())
+            from processing.vectorstore import build_vectorstore
+            st.session_state.documents = docs
+            st.session_state.vectorstore = build_vectorstore(docs)
+            st.sidebar.success(f"✅ Ingested {len(docs)} events")
+        except Exception as e:
+            st.sidebar.error(f"Ingestion failed: {e}")
 
 
 # ── Main tabs ─────────────────────────────────────────────────────────────────
