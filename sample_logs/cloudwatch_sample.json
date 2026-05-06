@@ -1,0 +1,116 @@
+{
+  "events": [
+    {
+      "logStreamName": "api-gateway/prod/i-0a1b2c3d4e5f",
+      "timestamp": 1746534301123,
+      "message": "[INFO] [req-a1b2] GET /api/users/profile - 200 OK (45ms) user_id=9823",
+      "ingestionTime": 1746534301200,
+      "eventId": "evt-001"
+    },
+    {
+      "logStreamName": "api-gateway/prod/i-0a1b2c3d4e5f",
+      "timestamp": 1746534310789,
+      "message": "[WARN] [req-a1b4] GET /api/orders - upstream latency 850ms exceeds threshold 500ms service=order-service",
+      "ingestionTime": 1746534310900,
+      "eventId": "evt-002"
+    },
+    {
+      "logStreamName": "api-gateway/prod/i-0a1b2c3d4e5f",
+      "timestamp": 1746534311001,
+      "message": "[ERROR] [req-a1b5] POST /api/checkout - upstream connection refused: order-service:8080 attempts=1",
+      "ingestionTime": 1746534311100,
+      "eventId": "evt-003"
+    },
+    {
+      "logStreamName": "api-gateway/prod/i-0a1b2c3d4e5f",
+      "timestamp": 1746534311234,
+      "message": "[ERROR] [req-a1b6] POST /api/checkout - upstream connection refused: order-service:8080 attempts=2",
+      "ingestionTime": 1746534311334,
+      "eventId": "evt-004"
+    },
+    {
+      "logStreamName": "auth-service/prod/i-0f1e2d3c4b5a",
+      "timestamp": 1746534313678,
+      "message": "[ERROR] [auth-003] Database connection pool exhausted pool_size=20 active=20 waiting=47 db_host=db-primary",
+      "ingestionTime": 1746534313800,
+      "eventId": "evt-005"
+    },
+    {
+      "logStreamName": "auth-service/prod/i-0f1e2d3c4b5a",
+      "timestamp": 1746534313901,
+      "message": "[ERROR] [auth-004] Failed to validate token: timeout waiting for DB connection (5000ms) user_id=4421",
+      "ingestionTime": 1746534314000,
+      "eventId": "evt-006"
+    },
+    {
+      "logStreamName": "auth-service/prod/i-0f1e2d3c4b5a",
+      "timestamp": 1746534314456,
+      "message": "[WARN] [auth-006] Circuit breaker OPEN for db-primary after 5 consecutive failures",
+      "ingestionTime": 1746534314556,
+      "eventId": "evt-007"
+    },
+    {
+      "logStreamName": "db-primary/prod/i-0d1c2b3a4f5e",
+      "timestamp": 1746534317123,
+      "message": "[CRIT] Max connections reached max_connections=500 current=498 - rejecting new connections",
+      "ingestionTime": 1746534317223,
+      "eventId": "evt-008"
+    },
+    {
+      "logStreamName": "db-primary/prod/i-0d1c2b3a4f5e",
+      "timestamp": 1746534317456,
+      "message": "[CRIT] Replication lag critical replica_lag=45.2s threshold=5s replica_host=db-replica-1",
+      "ingestionTime": 1746534317556,
+      "eventId": "evt-009"
+    },
+    {
+      "logStreamName": "db-primary/prod/i-0d1c2b3a4f5e",
+      "timestamp": 1746534318345,
+      "message": "[CRIT] Disk I/O saturation read_iops=12450 write_iops=8930 max_iops=15000",
+      "ingestionTime": 1746534318445,
+      "eventId": "evt-010"
+    },
+    {
+      "logStreamName": "payment-service/prod/i-0e1f2a3b4c5d",
+      "timestamp": 1746534320678,
+      "message": "[ERROR] [pay-001] Health check failed: unable to reach db-primary connection_error=timeout",
+      "ingestionTime": 1746534320778,
+      "eventId": "evt-011"
+    },
+    {
+      "logStreamName": "payment-service/prod/i-0e1f2a3b4c5d",
+      "timestamp": 1746534321234,
+      "message": "[ERROR] [pay-003] Payment processing halted: database unavailable affected_transactions=142",
+      "ingestionTime": 1746534321334,
+      "eventId": "evt-012"
+    },
+    {
+      "logStreamName": "order-service/prod/i-0b2a1f3e4d5c",
+      "timestamp": 1746534315678,
+      "message": "[ERROR] [ord-002] Failed to connect to payment-service connection_timeout=3000ms retry_policy=3",
+      "ingestionTime": 1746534315778,
+      "eventId": "evt-013"
+    },
+    {
+      "logStreamName": "order-service/prod/i-0b2a1f3e4d5c",
+      "timestamp": 1746534316567,
+      "message": "[ERROR] [ord-005] All retries exhausted payment-service unavailable - marking order_id=78432 FAILED",
+      "ingestionTime": 1746534316667,
+      "eventId": "evt-014"
+    },
+    {
+      "logStreamName": "api-gateway/prod/i-0a1b2c3d4e5f",
+      "timestamp": 1746534330345,
+      "message": "[CRIT] [gw-health] Health check cascade: auth-service=DOWN order-service=DEGRADED payment-service=DOWN",
+      "ingestionTime": 1746534330445,
+      "eventId": "evt-015"
+    }
+  ],
+  "searchedLogStreams": [
+    {"logStreamName": "api-gateway/prod/i-0a1b2c3d4e5f", "searchedCompletely": true},
+    {"logStreamName": "auth-service/prod/i-0f1e2d3c4b5a", "searchedCompletely": true},
+    {"logStreamName": "db-primary/prod/i-0d1c2b3a4f5e", "searchedCompletely": true},
+    {"logStreamName": "payment-service/prod/i-0e1f2a3b4c5d", "searchedCompletely": true},
+    {"logStreamName": "order-service/prod/i-0b2a1f3e4d5c", "searchedCompletely": true}
+  ]
+}

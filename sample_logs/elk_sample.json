@@ -1,0 +1,168 @@
+{
+  "took": 12,
+  "timed_out": false,
+  "_shards": {"total": 5, "successful": 5, "skipped": 0, "failed": 0},
+  "hits": {
+    "total": {"value": 15, "relation": "eq"},
+    "hits": [
+      {
+        "_index": "app-logs-2026.05.06",
+        "_id": "log-001",
+        "_score": 1.0,
+        "_source": {
+          "@timestamp": "2026-05-06T13:45:10.789Z",
+          "level": "WARN",
+          "service": "api-gateway",
+          "host": "i-0a1b2c3d4e5f",
+          "environment": "production",
+          "message": "GET /api/orders - upstream latency 850ms exceeds threshold 500ms",
+          "request_id": "req-a1b4",
+          "upstream_service": "order-service",
+          "latency_ms": 850,
+          "threshold_ms": 500
+        }
+      },
+      {
+        "_index": "app-logs-2026.05.06",
+        "_id": "log-002",
+        "_score": 1.0,
+        "_source": {
+          "@timestamp": "2026-05-06T13:45:13.678Z",
+          "level": "ERROR",
+          "service": "auth-service",
+          "host": "i-0f1e2d3c4b5a",
+          "environment": "production",
+          "message": "Database connection pool exhausted",
+          "pool_size": 20,
+          "active_connections": 20,
+          "waiting_requests": 47,
+          "db_host": "db-primary"
+        }
+      },
+      {
+        "_index": "app-logs-2026.05.06",
+        "_id": "log-003",
+        "_score": 1.0,
+        "_source": {
+          "@timestamp": "2026-05-06T13:45:14.456Z",
+          "level": "WARN",
+          "service": "auth-service",
+          "host": "i-0f1e2d3c4b5a",
+          "environment": "production",
+          "message": "Circuit breaker OPEN for db-primary after 5 consecutive failures",
+          "circuit_breaker": "db-primary",
+          "state": "OPEN",
+          "consecutive_failures": 5
+        }
+      },
+      {
+        "_index": "app-logs-2026.05.06",
+        "_id": "log-004",
+        "_score": 1.0,
+        "_source": {
+          "@timestamp": "2026-05-06T13:45:17.123Z",
+          "level": "CRITICAL",
+          "service": "db-primary",
+          "host": "i-0d1c2b3a4f5e",
+          "environment": "production",
+          "message": "Max connections reached - rejecting new connections",
+          "max_connections": 500,
+          "current_connections": 498
+        }
+      },
+      {
+        "_index": "app-logs-2026.05.06",
+        "_id": "log-005",
+        "_score": 1.0,
+        "_source": {
+          "@timestamp": "2026-05-06T13:45:17.456Z",
+          "level": "CRITICAL",
+          "service": "db-primary",
+          "host": "i-0d1c2b3a4f5e",
+          "environment": "production",
+          "message": "Replication lag critical",
+          "replica_lag_seconds": 45.2,
+          "threshold_seconds": 5,
+          "replica_host": "db-replica-1"
+        }
+      },
+      {
+        "_index": "app-logs-2026.05.06",
+        "_id": "log-006",
+        "_score": 1.0,
+        "_source": {
+          "@timestamp": "2026-05-06T13:45:18.345Z",
+          "level": "CRITICAL",
+          "service": "db-primary",
+          "host": "i-0d1c2b3a4f5e",
+          "environment": "production",
+          "message": "Disk I/O saturation - approaching IOPS limit",
+          "read_iops": 12450,
+          "write_iops": 8930,
+          "max_iops": 15000
+        }
+      },
+      {
+        "_index": "app-logs-2026.05.06",
+        "_id": "log-007",
+        "_score": 1.0,
+        "_source": {
+          "@timestamp": "2026-05-06T13:45:20.678Z",
+          "level": "ERROR",
+          "service": "payment-service",
+          "host": "i-0e1f2a3b4c5d",
+          "environment": "production",
+          "message": "Health check failed: unable to reach db-primary",
+          "check_target": "db-primary",
+          "error": "connection timeout"
+        }
+      },
+      {
+        "_index": "app-logs-2026.05.06",
+        "_id": "log-008",
+        "_score": 1.0,
+        "_source": {
+          "@timestamp": "2026-05-06T13:45:21.234Z",
+          "level": "ERROR",
+          "service": "payment-service",
+          "host": "i-0e1f2a3b4c5d",
+          "environment": "production",
+          "message": "Payment processing halted: database unavailable",
+          "affected_transactions": 142,
+          "db_status": "unreachable"
+        }
+      },
+      {
+        "_index": "app-logs-2026.05.06",
+        "_id": "log-009",
+        "_score": 1.0,
+        "_source": {
+          "@timestamp": "2026-05-06T13:45:15.678Z",
+          "level": "ERROR",
+          "service": "order-service",
+          "host": "i-0b2a1f3e4d5c",
+          "environment": "production",
+          "message": "Failed to connect to payment-service: connection timeout",
+          "target_service": "payment-service",
+          "timeout_ms": 3000,
+          "retry_count": 0
+        }
+      },
+      {
+        "_index": "app-logs-2026.05.06",
+        "_id": "log-010",
+        "_score": 1.0,
+        "_source": {
+          "@timestamp": "2026-05-06T13:45:30.345Z",
+          "level": "CRITICAL",
+          "service": "api-gateway",
+          "host": "i-0a1b2c3d4e5f",
+          "environment": "production",
+          "message": "Health check cascade failure",
+          "services_down": ["auth-service", "payment-service"],
+          "services_degraded": ["order-service"]
+        }
+      }
+    ]
+  }
+}

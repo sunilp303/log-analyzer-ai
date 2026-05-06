@@ -1,0 +1,41 @@
+2026-05-06T13:45:01.123Z INFO  api-gateway [req-a1b2] GET /api/users/profile - 200 OK (45ms)
+2026-05-06T13:45:03.456Z INFO  api-gateway [req-a1b3] POST /api/auth/login - 200 OK (120ms)
+2026-05-06T13:45:10.789Z WARN  api-gateway [req-a1b4] GET /api/orders - upstream latency 850ms exceeds threshold 500ms
+2026-05-06T13:45:11.001Z ERROR api-gateway [req-a1b5] POST /api/checkout - upstream connection refused: order-service:8080
+2026-05-06T13:45:11.234Z ERROR api-gateway [req-a1b6] POST /api/checkout - upstream connection refused: order-service:8080
+2026-05-06T13:45:11.567Z ERROR api-gateway [req-a1b7] POST /api/checkout - upstream connection refused: order-service:8080
+2026-05-06T13:45:12.001Z INFO  auth-service [auth-001] Token validation successful for user_id=9823
+2026-05-06T13:45:12.345Z INFO  auth-service [auth-002] Token validation successful for user_id=5541
+2026-05-06T13:45:13.678Z ERROR auth-service [auth-003] Database connection pool exhausted: pool_size=20 active=20 waiting=47
+2026-05-06T13:45:13.901Z ERROR auth-service [auth-004] Failed to validate token: timeout waiting for DB connection (5000ms)
+2026-05-06T13:45:14.123Z ERROR auth-service [auth-005] Failed to validate token: timeout waiting for DB connection (5000ms)
+2026-05-06T13:45:14.456Z WARN  auth-service [auth-006] Circuit breaker OPEN for db-primary after 5 consecutive failures
+2026-05-06T13:45:14.789Z ERROR api-gateway [req-a1b8] GET /api/profile - 503 Service Unavailable: auth-service health check failed
+2026-05-06T13:45:15.012Z ERROR api-gateway [req-a1b9] GET /api/profile - 503 Service Unavailable: auth-service health check failed
+2026-05-06T13:45:15.345Z INFO  order-service [ord-001] Order created: order_id=78432 user_id=1122 total=$142.50
+2026-05-06T13:45:15.678Z ERROR order-service [ord-002] Failed to connect to payment-service: connection timeout after 3000ms
+2026-05-06T13:45:15.901Z ERROR order-service [ord-003] Retry 1/3: payment-service unavailable
+2026-05-06T13:45:16.234Z ERROR order-service [ord-004] Retry 2/3: payment-service unavailable
+2026-05-06T13:45:16.567Z ERROR order-service [ord-005] Retry 3/3: payment-service unavailable - marking order_id=78432 FAILED
+2026-05-06T13:45:16.890Z ERROR order-service [ord-006] Dead letter queue write failed: kafka broker unavailable at kafka:9092
+2026-05-06T13:45:17.123Z CRIT  db-primary [db-001] Max connections reached: max_connections=500 current=498 - rejecting new connections
+2026-05-06T13:45:17.456Z CRIT  db-primary [db-002] Replication lag critical: replica_lag=45.2s threshold=5s
+2026-05-06T13:45:17.789Z ERROR db-primary [db-003] Slow query detected: SELECT * FROM orders WHERE user_id=? (duration=12450ms)
+2026-05-06T13:45:18.012Z ERROR db-primary [db-004] Lock timeout: transaction_id=tx-8821 waiting for row lock on table=payments (45s)
+2026-05-06T13:45:18.345Z CRIT  db-primary [db-005] Disk I/O saturation: read_iops=12450 write_iops=8930 (max: 15000 IOPS)
+2026-05-06T13:45:20.678Z ERROR payment-service [pay-001] Health check failed: unable to reach db-primary
+2026-05-06T13:45:20.901Z ERROR payment-service [pay-002] Health check failed: unable to reach db-primary
+2026-05-06T13:45:21.234Z ERROR payment-service [pay-003] Payment processing halted: database unavailable
+2026-05-06T13:45:21.567Z WARN  payment-service [pay-004] Fallback to read-replica for payment verification - may serve stale data
+2026-05-06T13:45:22.890Z ERROR notification-service [notif-001] Failed to send order confirmation email: SMTP_ERROR connection refused smtp.internal:587
+2026-05-06T13:45:23.123Z ERROR notification-service [notif-002] Kafka consumer lag critical: topic=order-events partition=0 lag=15234 messages
+2026-05-06T13:45:23.456Z WARN  notification-service [notif-003] Message processing rate dropped: current=12/s expected=450/s
+2026-05-06T13:45:25.789Z ERROR api-gateway [req-a2b0] GET /api/orders/history - 500 Internal Server Error: order-service timeout
+2026-05-06T13:45:26.012Z ERROR api-gateway [req-a2b1] GET /api/orders/history - 500 Internal Server Error: order-service timeout
+2026-05-06T13:45:30.345Z CRIT  api-gateway [gw-health] Health check cascade: auth-service=DOWN order-service=DEGRADED payment-service=DOWN
+2026-05-06T13:46:01.678Z INFO  db-primary [db-010] Connection count decreasing: current=421
+2026-05-06T13:46:15.901Z INFO  auth-service [auth-020] Circuit breaker HALF-OPEN - testing db-primary connection
+2026-05-06T13:46:16.234Z INFO  auth-service [auth-021] db-primary connection restored - circuit breaker CLOSED
+2026-05-06T13:46:30.567Z INFO  payment-service [pay-020] Database connectivity restored - resuming normal operations
+2026-05-06T13:46:45.890Z INFO  order-service [ord-020] Reconnected to payment-service - processing queued orders
+2026-05-06T13:47:00.123Z INFO  api-gateway [gw-health] All services healthy - incident resolved
