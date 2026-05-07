@@ -44,7 +44,7 @@ Logs (CloudWatch / ELK / Local)
 
 ```bash
 git clone https://github.com/sunilp303/log-analyzer-ai.git
-cd log-pattern-analyst
+cd log-analyzer-ai
 pip install -r requirements.txt
 ```
 
