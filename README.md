@@ -43,7 +43,7 @@ Logs (CloudWatch / ELK / Local)
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/your-username/log-pattern-analyst
+git clone https://github.com/sunilp303/log-analyzer-ai.git
 cd log-pattern-analyst
 pip install -r requirements.txt
 ```
